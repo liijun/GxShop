@@ -1,0 +1,66 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.4",
+    "core-js": "^2.6.5",
+    "element-china-area-data": "^5.0.2",
+    "element-ui": "^2.4.5",
+    "js-md5": "^0.7.3",
+    "qrcodejs2": "0.0.2",
+    "qs": "^6.8.0",
+    "vue": "^2.6.10",
+    "vue-amap": "^0.5.10",
+    "vue-emoji-picker": "^1.0.1",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1",
+    "wangeditor": "^3.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-plugin-router": "^4.0.0-alpha.4",
+    "@vue/cli-plugin-vuex": "^4.0.0-alpha.4",
+    "@vue/cli-service": "^3.11.0",
+    "axios": "^0.18.0",
+    "babel-eslint": "^10.0.1",
+    "echarts": "^4.2.0-rc.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-axios": "0.0.4",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-skeleton-component": "^1.1.2",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

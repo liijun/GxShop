@@ -1,0 +1,121 @@
+litemall:
+  # 开发者应该设置成自己的wx相关信息
+  wx:
+    app-id: XXXXXXXXXXXXX
+    app-secret: XXXXXXXXXXXXX
+    mch-id: XXXXXXXXXXXXX
+    mch-key: XXXXXXXXXXXXX
+    notify-url: http://123.206.215.59/shop/wx/order/pay-notify
+    # 商户证书文件路径 退款需要
+    # 请参考“商户证书”一节 https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=4_3
+    key-path: XXXXXXXXXXXXX
+  alipay:
+    app_id: XXXXXXXXXXXXX
+    merchant_private_key: XXXXXXXXXXXXX/lcQkx+5c6WkCFO7cxoD/Cbq7GEKl88ZMnyi7K8sJOt/DCC+x1JfAeXevzy+GHMtU5DL9q3e0MwNkOquAVwDjbXwfaMae5bMZLj1jFhBk+cIIvcceuo8hC+id38twvlQdDXAA6gH4CfsAHcHaYZ8wG0Z2ulfK2cdKg8PravRt5XTU8MTXJclUecOH1MlHyu5QG+Tv10p3n4vYF4d4JUjxkbcJT85+BKs8NWGuQBfmOpeTa68vJjEwcN/rXGNGX5emcOebh9CBpeQO95fI1OHnVF5DF7N/w3G09V/qPxBwPubBYxpMRkA2PIBQIepZjZnYq2AfSoR+1uBJAgMBAAECggEADqTWcX9xj4Ooj8W6zRE57cMfLz51IR+DwL0znRX2ORUav8XR5XRpVGyTzKYe2PjxTKXabsJoiB7InDEVFt70k89Jp7UJTMMa9FmruSyRTi6FQnBrcH04bZKKJ98Rv5CFbK832JzSxQf8TwcInKDuj0bmZA+XodlPTLcAVLMFhwITkTaK4+47ci85rklTYUJiOsdC3I1r5ooujNeIT1wT6ADS7T9j6SCOaAyCwEh+COCUVZh+PNtJGV/wI3QjhRvXNk/2LYCk9D2fhLmO/LyrdDYeF4vMlVga9b1mqKcYwQBi09FPiSs3ZUw/EhccZ/ntuqO0JiNx7ZYHNISEBWxUNQKBgQD3P1QHoJ6TfkkYdUevN11+aKgLyU8pEVcQj2WzeHjiQ5gmE2eADq99uteVpJsJMri/Gi4aQiKMclSRqzcLq9RY1RiWGVRXPvrkzjyA4mMOhYOAABs9zmluMMVRzLL6qZHAlNdDHnk8KcVwqZQ2A21Rm+l4s3mykhhGcNeqKowFRwKBgQC3cH3BQRobxxlKG3/KH9zTaOwbgBOvgg+u2i2T1eA8B95fpD3xULDQONQ+e5e+C0Dv+tGVzBjlbtQ4VvplNgDXs/VsamThLvWq+pyP7Vk5xzGJ1cYQXC50u95j3u6PtXdidHKnobK8ep2xRohVkmXPQxAYVl8i0fE/1zLi7uf17wKBgEenWcHwIaTbF3H4IzM7V2QYDoOD7uYW+WV6OV4ezuG79y8ptngdSWylpm7eynOK+JGhk7TWb87GH44r0YMXZC3ua/asFo5GWU3QGya69TwzI14IKdzqohFmHvlK2p/cXroyKIRyI251KJwy+RoCOj9JcQsi8GT5BAH+F/Jf7D5nAoGABYOaJB8C2+bmObYN51OB3dD/l+wHq3TrZ8QjLph1Pxi1dIaJXiGgzwGGT8KDUzEfaJdPiYMzFGJ6ep8Ss8wlxlYggHvKQIKa2+LgperqjbQRJyWH6KH8u4GSM8pVvXgk+I6ri6Jurv+4kcWe/4OBD/PiHfkqru9EoziizPOFgX0CgYADGRYwHyfmjO7ZcEKV0bwhk81SBQNExJHj3Q1FgYxuz8hzfFfpFrU59HnMETdkbQUSs0yZvFuyLz3t+lcK94DaaTzJ6vmCEbPjzjBNoB2n3hehrziyIiUlreCZMTw3vif0VUN3pcKgx/62TmQD7fELQiDAWIEjVH544J5LK80W4A==
+    alipay_public_key: XXXXXXXXXXXXX+whCNJ89E4RiC8M/XZr5ApsNGlbmUbprNH7C4kIxUXpXaKtnVE5EkHRGctmCsh/ZeHcgSjJokd800Cv44CK/d0P2fWOl40wwpGOWaEATrx1DUY9epjP0BvHQNonZpMvEeKY2qgbIWqZUCT9zqTU4ymsKaJ5kprbUfo+AmwYsI2fxIvScKkhKiiirMY7OZB4SfkkSCZ/HLa+khVDNvVWHgBLBlJA/efmdYnOHJMzpho3mRKv5Z7e2OSiOKTiuLjgg7KMy/8eXVbdpbXzY/JSQMdkYJDfPQwisXVy4rxuXCc37V/Rn84IggldtrtcGQC9r1mJyJwIDAQAB
+    notify_url: http://123.206.215.59/shop/wx/order/notifyURL
+    return_url: http://123.206.215.59/order/pay_success
+    sign_type: RSA2
+    charset: utf-8
+    gatewayUrl: https://openapi.alipay.com/gateway.do
+    log_path: logs/alipay.log
+
+  #通知相关配置
+  notify:
+    mail:
+      # 邮件通知配置,邮箱一般用于接收业务通知例如收到新的订单，sendto 定义邮件接收者，通常为商城运营人员
+      enable: false
+      host: smtp.exmail.qq.com
+      username: ex@ex.com.cn
+      password: XXXXXXXXXXXXX
+      sendfrom: ex@ex.com.cn
+      sendto: ex@qq.com
+      port: 465
+    # 短消息模版通知配置
+    # 短信息用于通知客户，例如发货短信通知，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
+    sms:
+      enable: true
+      # 如果是腾讯云短信，则设置active的值tencent
+      # 如果是阿里云短信，则设置active的值aliyun
+      active: tencent
+      sign: XXXXXXXXXXXXX
+      template:
+      - name: paySucceed
+        templateId: XXXXXXXXXXXXX
+      - name: captcha
+        templateId: XXXXXXXXXXXXX
+      - name: ship
+        templateId: XXXXXXXXXXXXX
+      - name: refund
+        templateId: XXXXXXXXXXXXX
+      tencent:
+        appid: XXXXXXXXXXXXX
+        appkey: XXXXXXXXXXXXX
+      aliyun:
+        regionId: xxx
+        accessKeyId: xxx
+        accessKeySecret: xxx
+
+  # 快鸟物流查询配置
+  express:
+    enable: true
+    appId: "1713344"
+    appKey: "4c954b21-ca59-40dc-9d63-c02ae370e1d4"
+    vendors:
+    - code: "ZTO"
+      name: "中通快递"
+    - code: "STO"
+      name: "申通速递"
+    - code: "YTO"
+      name: "圆通速递"
+    - code: "YD"
+      name: "韵达速递"
+    - code: "YZPY"
+      name: "邮政快递包裹"
+    - code: "EMS"
+      name: "EMS"
+    - code: "DBL"
+      name: "德邦快递"
+    - code: "FAST"
+      name: "快捷快递"
+    - code: "ZJS"
+      name: "宅急送"
+    - code: "TNT"
+      name: "TNT快递"
+    - code: "UPS"
+      name: "UPS"
+    - code: "DHL"
+      name: "DHL"
+    - code: "FEDEX"
+      name: "FEDEX联邦(国内件)"
+    - code: "FEDEX_GJ"
+      name: "FEDEX联邦(国际件)"
+
+  # 对象存储配置
+  storage:
+    # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
+    active: local
+    # 本地对象存储配置信息
+    local:
+      storagePath: storage
+      # 这个地方应该是wx模块的WxStorageController的fetch方法对应的地址
+      address: https://www.tdrc.org.cn/shop/wx/storage/fetch/
+    # 阿里云对象存储配置信息
+    aliyun:
+      endpoint: oss-cn-shenzhen.aliyuncs.com
+      accessKeyId: 111111
+      accessKeySecret: xxxxxx
+      bucketName: litemall
+    # 腾讯对象存储配置信息
+    # 请参考 https://cloud.tencent.com/document/product/436/6249
+    tencent:
+      secretId: AKIDOccMr856uoU1Tsa2MQL5aqseBUWRrb5i
+      secretKey: XqtgEhIdrupTs4ygaWlkUUXv3w3FiwuD
+      region: ap-shanghai
+      bucketName: vytech-1300096589
+    # 七牛云对象存储配置信息
+    qiniu:
+      endpoint: http://pd5cb6ulu.bkt.clouddn.com
+      accessKey: 111111
+      secretKey: xxxxxx
+      bucketName: litemall
