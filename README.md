@@ -15,11 +15,11 @@ GxShop是一套前后端分离，功能齐全操作简易的商城框架.目前�
 
 ## 代码地址：
 
-[后端代码地址 Gitee](https://gitee.com/lijunnew/GxShop/litemall)
-[Vue 前端代码地址 Gitee](https://gitee.com/lijunnew/GxShop/pcvue)
+[后端代码地址 Gitee](https://gitee.com/lijunnew/GxShop/tree/master/litemall)
+[Vue 前端代码地址 Gitee](https://gitee.com/lijunnew/GxShop/tree/master/pcvue)
 
-[后端代码地址 github](https://github.com/liijun/GxShop/litemall)
-[Vue 前端代码地址 github](https://github.com/liijun/GxShop/pcvue)
+[后端代码地址 github](https://github.com/liijun/GxShop/tree/master/litemall)
+[Vue 前端代码地址 github](https://github.com/liijun/GxShop/tree/master/pcvue)
 
 ## 演示地址:
 [演示地址](http://123.206.215.59) 
