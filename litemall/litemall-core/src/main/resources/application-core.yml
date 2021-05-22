@@ -41,16 +41,16 @@ litemall:
       sign: XXXXXXXXXXXXX
       template:
       - name: paySucceed
-        templateId: XXXXXXXXXXXXX
+        templateId: 12345
       - name: captcha
-        templateId: XXXXXXXXXXXXX
+        templateId: 12345
       - name: ship
-        templateId: XXXXXXXXXXXXX
+        templateId: 12345
       - name: refund
-        templateId: XXXXXXXXXXXXX
+        templateId: 12345
       tencent:
-        appid: XXXXXXXXXXXXX
-        appkey: XXXXXXXXXXXXX
+        appid: 12345
+        appkey: 12345
       aliyun:
         regionId: xxx
         accessKeyId: xxx
@@ -99,7 +99,7 @@ litemall:
     local:
       storagePath: storage
       # 这个地方应该是wx模块的WxStorageController的fetch方法对应的地址
-      address: https://www.tdrc.org.cn/shop/wx/storage/fetch/
+      address: http://123.206.215.59/shop/wx/storage/fetch/
     # 阿里云对象存储配置信息
     aliyun:
       endpoint: oss-cn-shenzhen.aliyuncs.com

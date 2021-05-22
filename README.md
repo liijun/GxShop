@@ -4,7 +4,6 @@
 
 GxShop是一套前后端分离，功能齐全操作简易的商城框架.目前已实现B2C完整电商功能，支付集成了微信扫码支付和支付宝PC端。
 [vue前端基于青梧商城改造](https://gitee.com/qingwuitcn/qwShopVue)
-
 后台基于LiteMall。
 
 
@@ -16,7 +15,7 @@ GxShop是一套前后端分离，功能齐全操作简易的商城框架.目前�
 
 ## 代码地址：
 
-[LiteMall 后端代码地址](https://gitee.com/lijunnew/GxShop/litemall)
+[后端代码地址](https://gitee.com/lijunnew/GxShop/litemall)
 [Vue 前端代码地址](https://gitee.com/lijunnew/GxShop/pcvue)
 
 
