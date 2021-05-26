@@ -52,3 +52,5 @@ Servers
 .metadata
 upload
 gen_code
+/litemall-core/src/main/resources/application-core.yml
+/litemall-db/src/main/resources/application-db.yml

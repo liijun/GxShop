@@ -44,7 +44,8 @@ public class AdminCategoryController {
             categoryVO.setKeywords(category.getKeywords());
             categoryVO.setName(category.getName());
             categoryVO.setLevel(category.getLevel());
-
+            categoryVO.setPid(category.getPid());
+            //二级子目录
             List<CategoryVo> children = new ArrayList<>();
             List<LitemallCategory> subCategoryList = categoryService.queryByPid(category.getId());
             for (LitemallCategory subCategory : subCategoryList) {
@@ -56,6 +57,24 @@ public class AdminCategoryController {
                 subCategoryVo.setKeywords(subCategory.getKeywords());
                 subCategoryVo.setName(subCategory.getName());
                 subCategoryVo.setLevel(subCategory.getLevel());
+                subCategoryVo.setPid(subCategory.getPid());
+                //三级子目录
+                List<CategoryVo> children1 = new ArrayList<>();
+                List<LitemallCategory> thirdCategoryList = categoryService.queryByPid(subCategory.getId());
+                for (LitemallCategory thirdCategory : thirdCategoryList) {
+                    CategoryVo thirdCategoryVo = new CategoryVo();
+                    thirdCategoryVo.setId(thirdCategory.getId());
+                    thirdCategoryVo.setDesc(thirdCategory.getDesc());
+                    thirdCategoryVo.setIconUrl(thirdCategory.getIconUrl());
+                    thirdCategoryVo.setPicUrl(thirdCategory.getPicUrl());
+                    thirdCategoryVo.setKeywords(thirdCategory.getKeywords());
+                    thirdCategoryVo.setName(thirdCategory.getName());
+                    thirdCategoryVo.setLevel(thirdCategory.getLevel());
+                    thirdCategoryVo.setPid(thirdCategory.getPid());
+                    children1.add(thirdCategoryVo);
+                }
+
+                subCategoryVo.setChildren(children1);
 
                 children.add(subCategoryVo);
             }
@@ -77,12 +96,12 @@ public class AdminCategoryController {
         if (StringUtils.isEmpty(level)) {
             return ResponseUtil.badArgument();
         }
-        if (!level.equals("L1") && !level.equals("L2")) {
-            return ResponseUtil.badArgumentValue();
-        }
+//        if (!level.equals("L1") && !level.equals("L2")) {
+//            return ResponseUtil.badArgumentValue();
+//        }
 
         Integer pid = category.getPid();
-        if (level.equals("L2") && (pid == null)) {
+        if ((level.equals("L2")||level.equals("L3")) && (pid == null)) {
             return ResponseUtil.badArgument();
         }
 
@@ -143,10 +162,20 @@ public class AdminCategoryController {
         List<LitemallCategory> l1CatList = categoryService.queryL1();
         List<Map<String, Object>> data = new ArrayList<>(l1CatList.size());
         for (LitemallCategory category : l1CatList) {
-            Map<String, Object> d = new HashMap<>(2);
+            Map<String, Object> d = new HashMap<>(3);
             d.put("value", category.getId());
             d.put("label", category.getName());
+            List<LitemallCategory> children = categoryService.queryByPid(category.getId());
+            List<Map<String, Object>> maps = new ArrayList<>(children.size());
+            for (LitemallCategory c : children) {
+                Map<String, Object> dc = new HashMap<>(2);
+                dc.put("value", c.getId());
+                dc.put("label", c.getName());
+                maps.add(dc);
+            }
+            d.put("children", maps);
             data.add(d);
+
         }
         return ResponseUtil.okList(data);
     }

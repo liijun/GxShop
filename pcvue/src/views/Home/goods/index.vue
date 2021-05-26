@@ -13,21 +13,21 @@
                 <div class="list">
                     <div class="first">
                         <ul>
-                            <li :class="($isEmpty(info.pid) || info.pid==0)?'red':''" @click="classChange(0,{},3)">全部</li>
-                            <li :class="(!$isEmpty(info.pid) && info.pid==v.id)?'red':''" v-for="(v,k) in goods_class.categoryList" :key="k" @click="classChange(v.id,v)">{{v.name}}</li>
+                            <li :class="($isEmpty(info.pid) || info.pid==0)?'red':''" @click="classChange(0,0,{},0)">全部</li>
+                            <li :class="(!$isEmpty(info.pid) && info.pid==v.id)?'red':''" v-for="(v,k) in goods_class.categoryList" :key="k" @click="classChange(v.pid,v.id,v)">{{v.name}}</li>
                         </ul>
                     </div>
-                    <div class="sec" >
+                    <div class="sec">
                         <ul  v-if="(!$isEmpty(info.pid) && !$isEmpty(goods_class.allList))">
-                            <li :class="(!$isEmpty(info.sid) && info.sid==v.id)?'red':''" v-for="(v,k) in goods_class.allList[info.pid]" :key="k" @click="classChange(v.id,v,1)" >{{v.name}}</li>
+                            <li :class="(!$isEmpty(info.sid) && info.sid==v.id)?'red':''" v-for="(v,k) in goods_class.allList[info.pid]" :key="k" @click="classChange(v.pid,v.id,v,1)" >{{v.name}}</li>
                         </ul>
-                        <!-- <div v-if="(!$isEmpty(base64Decode.pid) && base64Decode.pid==v.id)">
-                            <div  v-for="(vo,key) in v.children" :key="key">
-                                <ul style="margin-top:0" v-if="(!$isEmpty(base64Decode.sid) && base64Decode.sid==vo.id)">
-                                    <li :class="(!$isEmpty(base64Decode.tid) && base64Decode.tid==voo.id)?'red':''" v-for="(voo,keys) in vo.children" :key="keys" @click="classChange(v.id,voo,2,vo.id)">{{voo.name}}</li>
+                        <div v-if="(!$isEmpty(info.pid))">
+                            <div  v-for="(vo,key) in goods_class.allList[info.pid]" :key="key">
+                                <ul style="margin-top:0" v-if="(!$isEmpty(info.sid) && info.sid==vo.id)">
+                                    <li :class="(!$isEmpty(info.tid) && info.tid==voo.id)?'red':''" v-for="(voo,keys) in vo.children" :key="keys" @click="classChange(vo.pid,vo.id,voo,2)">{{voo.name}}</li>
                                 </ul>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 
                 </div>
@@ -124,8 +124,9 @@ export default {
               sort:'',
               categoryId:'',
               brandId:'',
-              pid:'',
-              sid:'',
+              pid:0,
+              sid:0,
+              tid:0,
           },
           total_data:0, // 总条数
           page_size:30,
@@ -151,15 +152,22 @@ export default {
             });
         },
         // 选择分类的选择框改变
-        classChange(pid,vo/*,deep=0,sid=0*/){
+        classChange(pid,id,vo,deep=0/*sid=0*/){
             // this.info.categoryId = info.id;
             // if(info.pid == 0)
             //     this.info.pid = info.categoryId;
             // else
             //     this.info.pid = info.pid;
             // this.$forceUpdate();
-            // this.search_goods();
-            this.$router.push("/goods/params/class_id."+pid+"|pid."+vo.pid);
+            // this.search_goods();++
+            let params = "class_id."+vo.id+"|pid."+pid;
+            if(deep==0)
+                params = "class_id."+id+"|pid."+id;
+            if(deep==1)
+                params = params+"|sid."+vo.id;
+            else if(deep==2)
+                params = params+"|sid."+vo.pid+"|tid."+vo.id;
+            this.$router.push("/goods/params/"+params);
         },
         // 获取品牌信息
         get_brand_list:function(){
@@ -205,11 +213,14 @@ export default {
             this.search_goods();
         },
         get_search_where:function(route_info=""){
+            this.info.pid = 0;
+            this.info.sid = 0;
+            this.info.tid = 0;
             let params = this.$route.params.info;
             if(route_info !=''){
                 params = route_info;
             }
-            
+
             let paramsArr = params.split('|');
             paramsArr.forEach(res=>{
                 let paramsInfo = [];
@@ -225,7 +236,7 @@ export default {
                     if(paramsInfo.length==2){
                         // this.info.class_info = [paramsInfo[1]];
                         this.info.categoryId = paramsInfo[1];
-                        this.info.sid = paramsInfo[1];
+                        // this.info.sid = paramsInfo[1];
                     }else{
                         // this.info.class_info = [];
                         this.info.categoryId = 0;
@@ -236,6 +247,20 @@ export default {
                         this.info.pid = paramsInfo[1];
                     }else{
                         this.info.pid = 0;
+                    }
+                }
+                if(paramsInfo[0] == 'sid'){
+                    if(paramsInfo.length==2){
+                        this.info.sid = paramsInfo[1];
+                    }else{
+                        this.info.sid = 0;
+                    }
+                }
+                if(paramsInfo[0] == 'tid'){
+                    if(paramsInfo.length==2){
+                        this.info.tid = paramsInfo[1];
+                    }else{
+                        this.info.tid = 0;
                     }
                 }
                 if(paramsInfo[0] == 'brand_id'){
@@ -260,7 +285,8 @@ export default {
                     }
                 }
             });
-            if(this.info.pid == 0) this.info.pid = this.info.categoryId;
+
+            // if(this.info.pid == 0) this.info.pid = this.info.categoryId;
             this.search_goods();
         },
     },

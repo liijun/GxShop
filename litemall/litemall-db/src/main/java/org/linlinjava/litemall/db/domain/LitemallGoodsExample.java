@@ -707,7 +707,9 @@ public class LitemallGoodsExample {
         }
 
         public Criteria andCategoryIdEqualTo(Integer value) {
-            addCriterion("category_id =", value, "categoryId");
+//            addCriterion("category_id =", value, "categoryId");
+            addCriterion("find_in_set(category_id,getchild("+value+"))");
+
             return (Criteria) this;
         }
 

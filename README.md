@@ -6,7 +6,7 @@ GxShop是一套前后端分离，功能齐全操作简易的商城框架.目前�
 [vue前端基于青梧商城改造](https://gitee.com/qingwuitcn/qwShopVue)
 后台基于LiteMall。
 
-
+> * 2021.05.26 三级分类、分类查询包含子分类商品
 > * LiteMall + Vue 前后分离
 > * 多商户、秒杀、团购、在线聊天、三级分销、Wechat支付、Alipay支付
 > * 支持二次开发

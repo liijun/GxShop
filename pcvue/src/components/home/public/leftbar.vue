@@ -2,13 +2,13 @@
     <div :class="change_color?'leftbar2':'leftbar'">
         <ul>
             <li class="left_bar_block" v-for="(v,k) in goods_class.categoryList" :key="k">
-                <div class="class_1"><router-link :to="'/goods/params/class_id.'+v.id">{{v.name}}</router-link></div>
-                <div class="class_2">
-                    <ul>
+                <div class="class_1"><router-link :to="'/goods/params/class_id.'+v.id+'|pid.'+v.id">{{v.name}}</router-link></div>
+                <!-- <div class="class_2"> -->
+                    <!-- <ul> -->
 <!--                        <li v-for="(vo,key) in goods_class.allList" :key="key" v-show="key<3"><router-link :to="'/goods/params/class_id.'+vo.id">{{vo.name}}</router-link></li>-->
-                        <li v-for="(vo,key) in goods_class.allList[v.id]" :key="key"  ><router-link :to="'/goods/params/class_id.'+vo.id+'|pid.'+vo.pid">{{vo.name}}</router-link></li>
-                    </ul>
-                </div>
+                        <!-- <li v-for="(vo,key) in goods_class.allList[v.id]" :key="key"  ><router-link :to="'/goods/params/class_id.'+vo.id+'|pid.'+vo.pid">{{vo.name}}</router-link></li>
+                    </ul> -->
+                <!-- </div> -->
                 <div class="subbar">
                     <div class="subbar_top">
                         <ul>
@@ -25,9 +25,9 @@
                     </div>
                     <div class="subbar_subnav">
                         <div class="class2_title"  v-for="(vo,key) in goods_class.allList[v.id]" :key="key">
-                            <h4>{{vo.name}}</h4>
+                            <h4><router-link :to="'/goods/params/class_id.'+vo.id+'|pid.'+vo.pid+'|sid.'+vo.id">{{vo.name}}</router-link></h4>
                             <ul>
-                                <li v-for="(item,index) in vo.children" :key="index"><router-link :to="'/goods/params/class_id.'+item.id">{{item.name}}</router-link></li>
+                                <li v-for="(item,index) in vo.children" :key="index"><router-link :to="'/goods/params/class_id.'+item.id+'|pid.'+vo.pid+'|sid.'+vo.id+'|tid.'+item.id">{{item.name}}</router-link></li>
                             </ul>
                         </div>
                     </div>
@@ -249,7 +249,7 @@ export default {
         overflow: hidden;
         box-sizing: border-box;
         width: 240px;
-        /*height: 24px;*/
+        height: 24px;
         ul:after{
             display: block;
             clear: both;

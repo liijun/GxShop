@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CategoryVo {
     private Integer id;
+    private Integer pid;
     private String name;
     private String keywords;
     private String desc;
@@ -19,6 +20,10 @@ public class CategoryVo {
     public void setChildren(List<CategoryVo> children) {
         this.children = children;
     }
+
+    public Integer getPid() { return pid; }
+
+    public void setPid(Integer pid) { this.pid = pid; }
 
     public Integer getId() {
         return id;

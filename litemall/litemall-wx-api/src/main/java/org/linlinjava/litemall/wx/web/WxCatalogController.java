@@ -6,6 +6,7 @@ import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.domain.LitemallCategory;
 import org.linlinjava.litemall.db.service.LitemallCategoryService;
 import org.linlinjava.litemall.wx.service.HomeCacheManager;
+import org.linlinjava.litemall.wx.vo.CategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,11 +100,42 @@ public class WxCatalogController {
         List<LitemallCategory> l1CatList = categoryService.queryL1();
 
         //所有子分类列表
-        Map<Integer, List<LitemallCategory>> allList = new HashMap<>();
-        List<LitemallCategory> sub;
+        Map<Integer, List<CategoryVo>> allList = new HashMap<>();
         for (LitemallCategory category : l1CatList) {
-            sub = categoryService.queryByPid(category.getId());
-            allList.put(category.getId(), sub);
+            //二级子目录
+            List<CategoryVo> subs = new ArrayList<>();
+            List<LitemallCategory> subCategoryList = categoryService.queryByPid(category.getId());
+            for(LitemallCategory subCategory : subCategoryList) {
+//            sub = categoryService.queryByPid(category.getId());
+                CategoryVo subCategoryVo = new CategoryVo();
+                subCategoryVo.setId(subCategory.getId());
+                subCategoryVo.setDesc(subCategory.getDesc());
+                subCategoryVo.setIconUrl(subCategory.getIconUrl());
+                subCategoryVo.setPicUrl(subCategory.getPicUrl());
+                subCategoryVo.setKeywords(subCategory.getKeywords());
+                subCategoryVo.setName(subCategory.getName());
+                subCategoryVo.setPid(subCategory.getPid());
+                subCategoryVo.setLevel(subCategory.getLevel());
+                //三级子目录
+                List<CategoryVo> children = new ArrayList<>();
+                List<LitemallCategory> thirdCategoryList = categoryService.queryByPid(subCategory.getId());
+                for (LitemallCategory thirdCategory : thirdCategoryList) {
+                    CategoryVo thirdCategoryVo = new CategoryVo();
+                    thirdCategoryVo.setId(thirdCategory.getId());
+                    thirdCategoryVo.setDesc(thirdCategory.getDesc());
+                    thirdCategoryVo.setIconUrl(thirdCategory.getIconUrl());
+                    thirdCategoryVo.setPicUrl(thirdCategory.getPicUrl());
+                    thirdCategoryVo.setKeywords(thirdCategory.getKeywords());
+                    thirdCategoryVo.setName(thirdCategory.getName());
+                    thirdCategoryVo.setPid(thirdCategory.getPid());
+                    thirdCategoryVo.setLevel(thirdCategory.getLevel());
+                    children.add(thirdCategoryVo);
+                }
+                subCategoryVo.setChildren(children);
+
+                subs.add(subCategoryVo);
+            }
+            allList.put(category.getId(), subs);
         }
 
         // 当前一级分类目录
