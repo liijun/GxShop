@@ -7,10 +7,10 @@
             <div class="goods_list_item" v-for="(v,k) in goods_list" :key="k">
                 <router-link :to="'/goods/info/'+v.id">
                 <dl>
-                    <dt><el-image :src="v.image" alt="" lazy></el-image></dt>
-                    <dd class="title">{{v.goods_name}}</dd>
-                    <dd class="price">￥{{v.groupbuy_price}}</dd>
-                    <dd><span>立即购买</span><span>{{v.comment_count}} 人评价</span></dd>
+                    <dt><el-image :src="v.picUrl" alt="" lazy></el-image></dt>
+                    <dd class="title">{{v.name}}</dd>
+                    <dd class="price">￥{{v.grouponPrice}}</dd>
+                    <dd><span>立即购买</span><span>{{v.grouponMember}}人成团</span></dd>
                 </dl>
                 </router-link>
             </div>
@@ -62,11 +62,12 @@ export default {
         search_goods:function(){
             this.info.page = this.current_page;
             this.info.is_groupbuy = 1;
-            this.$post(this.$api.homeSearchGoods,this.info).then(res=>{
-                this.page_size = res.data.per_page;
+            this.$get(this.$api.homeGrouponList,this.info).then(res=>{
+                console.log(res);
+                this.page_size = res.data.limit;
                 this.total_data = res.data.total;
-                this.current_page = res.data.current_page;
-                this.goods_list = res.data.data;
+                this.current_page = res.data.page;
+                this.goods_list = res.data.list;
             });
         },
         get_groupbuy_banner:function(){

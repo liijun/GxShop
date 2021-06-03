@@ -522,7 +522,11 @@ export default {
                 if(this.goods_info.is_seckill == 1){
                     this.seckill_active();
                 }
-                
+                if(res.data.groupon && res.data.groupon.length==1){
+                    this.goods_info.is_groupbuy = 1;
+                    this.goods_info.groupbuy_price = this.goods_info.retailPrice- res.data.groupon[0].discount;
+                }
+
 
             });
         },
