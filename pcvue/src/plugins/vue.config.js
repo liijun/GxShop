@@ -9,8 +9,8 @@ module.exports = {
       proxy: {
           //配置跨域-将所有/api的请求拦截，代理到target上
           '/wx': {
-            //   target: "http://123.206.215.59/shop/wx/",
-              target:"http://123.206.215.59:7001/wx",
+              target: "http://123.206.215.59/shop/wx/",
+            //   target:"http://123.206.215.59:7001/wx",
               ws:true,
               changOrigin:true,
               pathRewrite:{ //---->>>并将/api换成/

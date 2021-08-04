@@ -375,7 +375,8 @@ export const api = {
 
     // 无压缩裁剪上传
     'homeAutoUpload' : baseUrl +"auto/auto_upload",
-
+    // 团购列表
+    'homeGrouponList' : baseUrl +"groupon/list",
     /**
      * 公共接口
      * @author hg <www.qingwuit.com>
